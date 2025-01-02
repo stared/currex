@@ -1,4 +1,4 @@
-from forex_python.converter import CurrencyRates
+import requests
 from decimal import Decimal
 from typing import Union, Optional
 import functools
@@ -17,7 +17,29 @@ class CurrencyMeta(type):
 
 
 class Currency(metaclass=CurrencyMeta):
-    _rates = CurrencyRates()
+    _api_url = "https://hexarate.paikama.co/api/rates/latest"
+    _rates_cache = {}
+
+    @classmethod
+    def _get_rate(cls, from_currency: str, to_currency: str) -> Decimal:
+        """Get exchange rate from Hexarate API"""
+        cache_key = f"{from_currency}-{to_currency}"
+        if cache_key in cls._rates_cache:
+            return cls._rates_cache[cache_key]
+
+        try:
+            response = requests.get(
+                f"{cls._api_url}/{from_currency}", params={"target": to_currency}
+            )
+            response.raise_for_status()
+            data = response.json()
+            if data["status_code"] != 200:
+                raise ValueError(f"API returned error status: {data['status_code']}")
+            rate = Decimal(str(data["data"]["mid"]))
+            cls._rates_cache[cache_key] = rate
+            return rate
+        except Exception as e:
+            raise ValueError(f"Failed to get exchange rate: {str(e)}")
 
     def __init__(self, amount: Union[int, float, Decimal]):
         self.amount = Decimal(str(amount))
@@ -41,13 +63,12 @@ class Currency(metaclass=CurrencyMeta):
         if not issubclass(currency_class, Currency):
             raise TypeError(f"Cannot convert to {currency_class}")
 
-        try:
-            rate = self._rates.get_rate(
-                self.__class__.__name__, currency_class.__name__
-            )
-            return currency_class(self.amount * Decimal(str(rate)))
-        except Exception as e:
-            raise ValueError(f"Failed to get exchange rate: {str(e)}")
+        from_currency = self.__class__.__name__
+        to_currency = currency_class.__name__
+
+        rate = self._get_rate(from_currency, to_currency)
+        converted_amount = self.amount * rate
+        return currency_class(converted_amount)
 
 
 def _currency_factory(code: str) -> type:

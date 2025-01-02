@@ -33,7 +33,7 @@ print(pln_amount)  # Prints the amount in PLN
 ## Requirements
 
 - Python 3.10 or higher
-- Internet connection for real-time exchange rates
+- Internet connection for real-time exchange rates - it uses [HexaRate](https://hexarate.paikama.co/)
 
 ## License
 
