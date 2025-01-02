@@ -64,6 +64,50 @@ class Currency(metaclass=CurrencyMeta):
             return float(self.amount / converted.amount)
         return type(self)(self.amount / to_decimal(other))
 
+    def __eq__(self, other: object) -> bool:
+        """Equal only if same currency type and amount"""
+        if not isinstance(other, Currency):
+            return NotImplemented
+        return type(self) is type(other) and self.amount == other.amount
+
+    def __ne__(self, other: object) -> bool:
+        """Not equal if different currency type or amount"""
+        if not isinstance(other, Currency):
+            return NotImplemented
+        return not self.__eq__(other)
+
+    def __lt__(self, other: "Currency") -> bool:
+        """Less than, converts other currency if needed"""
+        if not isinstance(other, Currency):
+            return NotImplemented
+        if type(self) is not type(other):
+            other = other.to(type(self))
+        return self.amount < other.amount
+
+    def __le__(self, other: "Currency") -> bool:
+        """Less than or equal, converts other currency if needed"""
+        if not isinstance(other, Currency):
+            return NotImplemented
+        if type(self) is not type(other):
+            other = other.to(type(self))
+        return self.amount <= other.amount
+
+    def __gt__(self, other: "Currency") -> bool:
+        """Greater than, converts other currency if needed"""
+        if not isinstance(other, Currency):
+            return NotImplemented
+        if type(self) is not type(other):
+            other = other.to(type(self))
+        return self.amount > other.amount
+
+    def __ge__(self, other: "Currency") -> bool:
+        """Greater than or equal, converts other currency if needed"""
+        if not isinstance(other, Currency):
+            return NotImplemented
+        if type(self) is not type(other):
+            other = other.to(type(self))
+        return self.amount >= other.amount
+
     def __str__(self) -> str:
         return f"{self.amount:.2f} {self.__class__.__name__}"
 

@@ -41,3 +41,14 @@ def test_multi_currency_chain():
     result = PLN(GBP(EUR(start_amount)))
     assert isinstance(result, PLN)
     assert result.amount > 0
+
+
+@pytest.mark.exchange
+def test_comparison_different_currencies():
+    """Test comparisons between different currencies (requires exchange rates)"""
+    amount_pln = 100 * PLN
+    amount_eur = 100 * EUR
+
+    # Assuming 1 EUR is always worth more than 1 PLN
+    assert amount_pln < amount_eur
+    assert amount_pln <= amount_eur

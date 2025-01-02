@@ -35,6 +35,20 @@ def test_subtraction():
     assert diff.amount == Decimal("70")
 
 
+def test_comparison():
+    # Same currency comparisons
+    amount1 = 100 * USD
+    amount2 = 50 * USD
+    amount3 = 100 * USD
+
+    assert amount1 > amount2
+    assert amount2 < amount1
+    assert amount1 >= amount3
+    assert amount1 <= amount3
+    assert amount1 == amount3
+    assert amount1 != amount2
+
+
 def test_string_representation():
     amount = 42.42 * USD
     assert str(amount).endswith("USD")
