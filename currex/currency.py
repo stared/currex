@@ -118,6 +118,8 @@ class Currency(metaclass=CurrencyMeta):
         """Convert to another currency"""
         from_currency = self.__class__.__name__
         to_currency = currency_class.__name__
+        if from_currency == to_currency:
+            return currency_class(self.amount)
 
         rate = ExchangeRateAPI.get_rate(from_currency, to_currency)
         converted_amount = self.amount * rate
