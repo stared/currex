@@ -37,6 +37,32 @@ class Currency(metaclass=CurrencyMeta):
     def __radd__(self: C, other: DecimalLike) -> C:
         return type(self)(self.amount + Decimal(str(other)))
 
+    def __neg__(self: C) -> C:
+        """Return the negative of this currency amount"""
+        return type(self)(-self.amount)
+
+    def __sub__(self: C, other: Union["Currency", DecimalLike]) -> C:
+        """Subtract another currency (with conversion) or decimal-like number"""
+        if isinstance(other, Currency):
+            converted = other.to(type(self))
+            return type(self)(self.amount - converted.amount)
+        return type(self)(self.amount - Decimal(str(other)))
+
+    def __rsub__(self: C, other: DecimalLike) -> C:
+        """Subtract this currency from a decimal-like number"""
+        return type(self)(Decimal(str(other)) - self.amount)
+
+    def __truediv__(self, other: Union["Currency", DecimalLike]) -> Union[C, float]:
+        """Divide by another currency (returns unitless) or decimal-like number (returns same currency)"""
+        if isinstance(other, Currency):
+            converted = other.to(type(self))
+            return float(self.amount / converted.amount)
+        return type(self)(self.amount / Decimal(str(other)))
+
+    def __rtruediv__(self, other: DecimalLike) -> C:
+        """Divide a decimal-like number by this currency"""
+        return type(self)(Decimal(str(other)) / self.amount)
+
     def __str__(self) -> str:
         return f"{self.amount:.2f} {self.__class__.__name__}"
 
