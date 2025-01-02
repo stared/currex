@@ -4,6 +4,10 @@ A Pythonic currency calculator that makes working with currencies and exchange r
 
 Works best in interactive python sessions (Jupyter Notebook, IPython, etc.).
 
+IMPORTANT: It is inteded to be used in interactive sessions, not in production code.
+
+EVEN MORE IMPORTANT: Never use it for any important decisions - taxes, investments, etc.
+
 ## Installation
 
 ```bash
