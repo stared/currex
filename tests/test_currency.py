@@ -1,5 +1,5 @@
 import pytest
-from pythonic_money import USD, EUR, GBP, PLN
+from currex import USD, EUR, GBP, PLN
 from decimal import Decimal
 
 
