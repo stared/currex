@@ -1,17 +1,17 @@
-# Pythonic Money
+# Currex
 
 A Pythonic currency calculator that makes working with currencies and exchange rates simple and intuitive.
 
 ## Installation
 
 ```bash
-pip install pythonic-money
+pip install git+https://github.com/stared/currex.git
 ```
 
 ## Usage
 
 ```python
-from pythonic_money import *
+from currex import *
 
 # use currencies as if they were numbers
 100 * USD  # USD(100)
