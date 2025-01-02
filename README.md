@@ -2,6 +2,8 @@
 
 A Pythonic currency calculator that makes working with currencies and exchange rates simple and intuitive.
 
+Works best in interactive python sessions (Jupyter Notebook, IPython, etc.).
+
 ## Installation
 
 ```bash
@@ -20,6 +22,9 @@ from currex import *
 # convert currencies to other currencies
 USD(100).to(EUR)  # EUR(85.3)
 USD(100).to(PLN)  # PLN(430.5)
+
+# this syntax is also supported
+PLN(EUR(12))  # PLN(51.3312)
 
 # add diffrect currencies
 USD(100) + EUR(100)  # USD(203.50500)

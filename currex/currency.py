@@ -15,8 +15,12 @@ class CurrencyMeta(type):
 
 
 class Currency(metaclass=CurrencyMeta):
-    def __init__(self, amount: DecimalLike):
-        self.amount: Decimal = Decimal(str(amount))
+    def __init__(self, amount: Union["Currency", DecimalLike]):
+        if isinstance(amount, DecimalLike):
+            self.amount = Decimal(str(amount))
+        else:
+            converted = amount.to(type(self))
+            self.amount = converted.amount
 
     def __mul__(self: C, other: DecimalLike) -> C:
         return type(self)(self.amount * Decimal(str(other)))
