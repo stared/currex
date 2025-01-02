@@ -1,3 +1,14 @@
+"""Tests for currency exchange functionality.
+
+Note: Tests marked with @pytest.mark.api are skipped in CI environments (like GitHub Actions)
+because they require access to external exchange rate API which:
+1. May have rate limits or require authentication
+2. May be unstable or slow, making CI less reliable
+3. Would make tests dependent on external services
+
+Run these tests locally with `pytest -v` or explicitly with `pytest -v -m api`
+"""
+
 import pytest
 from currex import USD, EUR, GBP, PLN
 from decimal import Decimal

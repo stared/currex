@@ -35,5 +35,5 @@ testpaths = [
     "tests",
 ]
 markers = [
-    "exchange: marks tests that require external exchange rate API (deselect with '-m \"not exchange\"')",
+    "api: marks tests that require external API access (deselect with '-m \"not api\"')",
 ] 

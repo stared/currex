@@ -25,8 +25,6 @@ jobs:
     
     - name: Run tests
       run: |
+        # Skip API tests as they require external service access
+        # Run API tests locally with: pytest -v -m "api"
         pytest -v -m "not api" 
-
-    - name: Run exchange with external API
-      run: |
-        pytest -v -m "api"
