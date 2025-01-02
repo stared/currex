@@ -4,12 +4,23 @@ from typing import Union, Optional
 import functools
 
 
-class Currency:
+class CurrencyMeta(type):
+    def __mul__(cls, other):
+        if isinstance(other, (int, float, Decimal)):
+            return cls(Decimal(str(other)))
+        return NotImplemented
+
+    def __rmul__(cls, other):
+        if isinstance(other, (int, float, Decimal)):
+            return cls(Decimal(str(other)))
+        return NotImplemented
+
+
+class Currency(metaclass=CurrencyMeta):
     _rates = CurrencyRates()
 
-    def __init__(self, amount: Union[int, float, Decimal], code: str):
+    def __init__(self, amount: Union[int, float, Decimal]):
         self.amount = Decimal(str(amount))
-        self.code = code
 
     def __mul__(self, other):
         if isinstance(other, (int, float, Decimal)):
@@ -20,28 +31,33 @@ class Currency:
         return self.__mul__(other)
 
     def __str__(self):
-        return f"{self.amount:.2f} {self.code}"
+        return f"{self.amount:.2f} {self.__class__.__name__}"
 
     def __repr__(self):
-        return f"{self.code}({self.amount})"
+        return f"{self.__class__.__name__}({self.amount})"
+
+    def to(self, currency_class: type) -> "Currency":
+        """Convert to another currency"""
+        if not issubclass(currency_class, Currency):
+            raise TypeError(f"Cannot convert to {currency_class}")
+
+        try:
+            rate = self._rates.get_rate(
+                self.__class__.__name__, currency_class.__name__
+            )
+            return currency_class(self.amount * Decimal(str(rate)))
+        except Exception as e:
+            raise ValueError(f"Failed to get exchange rate: {str(e)}")
 
 
 def _currency_factory(code: str) -> type:
     """Creates a new currency class for the given currency code."""
 
-    @functools.wraps(Currency)
-    def __init__(self, amount: Union[int, float, Decimal] = 1):
-        super(type(self), self).__init__(amount, code)
+    class NewCurrency(Currency):
+        pass
 
-    def __call__(cls, other: Currency) -> "Currency":
-        if isinstance(other, Currency):
-            rate = cls._rates.get_rate(other.code, code)
-            return cls(other.amount * Decimal(str(rate)))
-        raise TypeError(f"Cannot convert {type(other)} to {code}")
-
-    return type(
-        code, (Currency,), {"__init__": __init__, "__call__": classmethod(__call__)}
-    )
+    NewCurrency.__name__ = code
+    return NewCurrency
 
 
 # Create currency classes
