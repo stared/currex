@@ -52,6 +52,19 @@ class Currency(metaclass=CurrencyMeta):
     def __rmul__(self, other):
         return self.__mul__(other)
 
+    def __add__(self, other):
+        if isinstance(other, Currency):
+            converted = other.to(type(self))
+            return type(self)(self.amount + converted.amount)
+        elif isinstance(other, (int, float, Decimal)):
+            return type(self)(self.amount + Decimal(str(other)))
+        return NotImplemented
+
+    def __radd__(self, other):
+        if isinstance(other, (int, float, Decimal)):
+            return type(self)(self.amount + Decimal(str(other)))
+        return NotImplemented
+
     def __str__(self):
         return f"{self.amount:.2f} {self.__class__.__name__}"
 

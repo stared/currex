@@ -13,13 +13,17 @@ pip install pythonic-money
 ```python
 from pythonic_money import *
 
-# Convert 100 USD to EUR
-result = EUR(100 * USD)
-print(result)  # Prints the amount in EUR
+# use currencies as if they were numbers
+100 * USD  # USD(100)
+12 * USD(100)  # USD(1200)
 
-# Convert British Pounds to Polish Złoty
-pln_amount = PLN(23.4 * GBP)
-print(pln_amount)  # Prints the amount in PLN
+# convert currencies to other currencies
+USD(100).to(EUR)  # EUR(85.3)
+USD(100).to(PLN)  # PLN(430.5)
+
+# add diffrect currencies
+USD(100) + EUR(100)  # USD(203.50500)
+EUR(100) + USD(100)  # EUR(196.6100)
 ```
 
 ## Features
