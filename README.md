@@ -26,9 +26,12 @@ USD(100).to(PLN)  # PLN(430.5)
 # this syntax is also supported
 PLN(EUR(12))  # PLN(51.3312)
 
-# add diffrect currencies
+# add different currencies
 USD(100) + EUR(100)  # USD(203.50500)
 EUR(100) + USD(100)  # EUR(196.6100)
+
+# divide currencies
+USD(2) / JPY(14)  # 22.531428526365715
 ```
 
 ## Features
