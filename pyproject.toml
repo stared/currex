@@ -17,10 +17,13 @@ dependencies = [
     "pytest>=7.4.0",
 ]
 classifiers = [
+    "Development Status :: 3 - Alpha",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Utilities",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
