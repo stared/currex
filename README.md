@@ -1,5 +1,12 @@
 # Currex
 
+[![currex version - PyPI](https://img.shields.io/pypi/v/currex)](https://pypi.org/project/currex/)
+![PyPI status](https://img.shields.io/pypi/status/currex.svg)
+![MIT license - PyPI](https://img.shields.io/pypi/l/currex.svg)
+![Python version - PyPI](https://img.shields.io/pypi/pyversions/currex.svg)
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/stared/currex/test.yml?branch=main)](https://github.com/stared/currex/actions)
+[![Twitter @pmigdal](https://img.shields.io/twitter/follow/pmigdal)](https://twitter.com/pmigdal)
+
 A Pythonic currency calculator that makes working with currencies and exchange rates simple and smooth.
 
 I often use Python as a command-line calculator. Yet, I need to go back to Google Search to convert between curriencies. So, for my own convenience, I created this library.
