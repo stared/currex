@@ -20,7 +20,7 @@ It is NOT intended to be used in production code. Every API design decision I ma
 ## Installation
 
 ```bash
-pip install git+https://github.com/stared/currex.git
+pip install currex
 ```
 
 ## Usage
