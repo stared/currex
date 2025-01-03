@@ -1,12 +1,14 @@
 # Currex
 
-A Pythonic currency calculator that makes working with currencies and exchange rates simple and intuitive.
+A Pythonic currency calculator that makes working with currencies and exchange rates simple and smooth.
 
-Works best in interactive python sessions (Jupyter Notebook, IPython, etc.).
+I often use Python as a command-line calculator. Yet, I need to go back to Google Search to convert between curriencies. So, for my own convenience, I created this library.
 
-IMPORTANT: It is inteded to be used in interactive sessions, not in production code.
+It is inteded to be used interactive python sessions (such as Jupyter Notebook, IPython, etc.) to get ballpark estimates of prices - e.g. when travelling, buying online, etc.
 
-EVEN MORE IMPORTANT: Never use it for any important decisions - taxes, investments, etc.
+It is NOT intended to be used in production code. Every API design decision I made was to make it as simple as possible to use it in interactive sessions.
+
+**EVEN MORE IMPORTANT**: Never use it for any important decisions - taxes, investments, etc. There is not quarantee that the exchange rates are correct.
 
 ## Installation
 
@@ -32,7 +34,7 @@ PLN(EUR(12))  # PLN(51.3312)
 
 # add different currencies
 USD(100) + EUR(100)  # USD(203.50500)
-EUR(100) + USD(100)  # EUR(196.6100)
+EUR(100) - USD(100)  # EUR(2.60500)
 
 # divide currencies
 USD(2) / JPY(14)  # 22.531428526365715
@@ -40,17 +42,22 @@ USD(2) / JPY(14)  # 22.531428526365715
 
 ## Features
 
-- Real-time exchange rates
-- Intuitive Pythonic API
-- Support for major world currencies
-- Automatic currency conversion
-- Type-safe operations
+- Arithmetic operations with currencies
+- Currency conversion
+- Autocasting - when using a few currencies, automatically convert them to the first one
 
 ## Requirements
 
 - Python 3.10 or higher
 - Internet connection for real-time exchange rates - it uses [HexaRate](https://hexarate.paikama.co/)
 
+## TODO
+
+- More currencies
+- Installation with PyPI
+- Mock API for testing
+- More backends for exchange rates
+
 ## License
 
-MIT License
+MIT License by [Piotr Migdał](https://p.migdal.pl/)
