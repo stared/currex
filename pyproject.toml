@@ -7,7 +7,7 @@ name = "currex"
 version = "0.1.0"
 description = "A Pythonic currency calculator with real-time exchange rates"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 license = "MIT"
 authors = [
     { name = "Piotr Migdał" },
