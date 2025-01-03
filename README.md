@@ -53,7 +53,6 @@ USD(2) / JPY(14)  # 22.531428526365715
 
 ## TODO
 
-- More currencies
 - Installation with PyPI
 - Mock API for testing
 - More backends for exchange rates
