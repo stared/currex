@@ -42,4 +42,31 @@ testpaths = [
 ]
 markers = [
     "api: marks tests that require external API access (deselect with '-m \"not api\"')",
-] 
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.14.0",
+    "black>=24.10.0",
+    "ruff>=0.8.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+
+[tool.ruff.isort]
+combine-as-imports = true
