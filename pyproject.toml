@@ -59,6 +59,8 @@ include = '\.pyi?$'
 [tool.ruff]
 line-length = 88
 target-version = "py39"
+
+[tool.ruff.lint]
 select = [
     "E",  # pycodestyle errors
     "W",  # pycodestyle warnings
@@ -68,5 +70,5 @@ select = [
     "B",  # flake8-bugbear
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 combine-as-imports = true

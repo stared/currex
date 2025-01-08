@@ -1,6 +1,8 @@
-import pytest
-from currex import USD, EUR, GBP, PLN, currex_config
 from decimal import Decimal
+
+import pytest
+
+from currex import USD, currex_config
 
 
 def test_basic_multiplication():

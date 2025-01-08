@@ -1,7 +1,8 @@
 from decimal import Decimal
-from typing import Union, Type, TypeVar
-from .exchange import ExchangeRateAPI
+from typing import Type, TypeVar, Union
+
 from .config import currex_config
+from .exchange import ExchangeRateAPI
 
 DecimalLike = Union[int, float, Decimal]
 C = TypeVar("C", bound="Currency")
@@ -13,15 +14,17 @@ def to_decimal(value: DecimalLike) -> Decimal:
 
 
 class CurrencyMeta(type):
-    def __mul__(cls: Type[C], other: DecimalLike) -> C:
+    def __mul__(cls, other: DecimalLike) -> "Currency":
         return cls(to_decimal(other))
 
-    def __rmul__(cls: Type[C], other: DecimalLike) -> C:
+    def __rmul__(cls, other: DecimalLike) -> "Currency":
         return cls(to_decimal(other))
 
 
 class Currency(metaclass=CurrencyMeta):
-    def __init__(self, amount: Union["Currency", DecimalLike]):
+    amount: Decimal
+
+    def __init__(self, amount: Union["Currency", DecimalLike]) -> None:
         if isinstance(amount, Currency):
             converted = amount.to(type(self))
             self.amount = converted.amount
@@ -59,11 +62,12 @@ class Currency(metaclass=CurrencyMeta):
         return type(self)(to_decimal(other) - self.amount)
 
     def __truediv__(self, other: Union["Currency", DecimalLike]) -> Union[C, float]:
-        """Divide by another currency (returns unitless) or decimal-like number (returns same currency)"""
+        """Divide by another currency (returns unitless) or decimal-like number
+        (returns same currency)"""
         if isinstance(other, Currency):
             converted = other.to(type(self))
             return float(self.amount / converted.amount)
-        return type(self)(self.amount / to_decimal(other))
+        return type(self)(self.amount / to_decimal(other))  # type: ignore
 
     def __eq__(self, other: object) -> bool:
         """Equal only if same currency type and amount"""

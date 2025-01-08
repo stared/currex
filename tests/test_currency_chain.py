@@ -5,72 +5,73 @@ by converting 1 unit of currency at index 2n to currency at index 2n+1.
 """
 
 import pytest
+
 from currex import (
-    USD,
-    EUR,
-    GBP,
-    JPY,
-    CHF,
-    AUD,
-    CAD,
-    HKD,
-    NZD,
-    SEK,
-    KRW,
-    SGD,
-    NOK,
-    MXN,
-    INR,
-    RUB,
-    ZAR,
-    TRY,
-    BRL,
-    TWD,
-    DKK,
-    PLN,
-    THB,
-    IDR,
-    CZK,
     AED,
     AFN,
     AOA,
     ARS,
+    AUD,
     BAM,
     BGN,
+    BRL,
     BYN,
+    CAD,
     CDF,
+    CHF,
     CLP,
     COP,
     CUP,
+    CZK,
+    DKK,
+    EUR,
+    GBP,
     GEL,
     GHS,
     GNF,
+    HKD,
     HUF,
+    IDR,
     ILS,
+    INR,
     ISK,
+    JPY,
+    KRW,
     KZT,
     MDL,
     MGA,
     MRU,
+    MXN,
     MZN,
     NIO,
+    NOK,
+    NZD,
     PEN,
     PHP,
     PKR,
+    PLN,
     RON,
     RSD,
+    RUB,
     SDG,
+    SEK,
+    SGD,
     SRD,
     STN,
+    THB,
     TJS,
     TMT,
+    TRY,
+    TWD,
     UAH,
     UGX,
+    USD,
     UYU,
     UZS,
     VES,
     XAF,
     XOF,
+    ZAR,
     ZMW,
 )
 
@@ -89,9 +90,10 @@ def test_specific_currency_pairs():
     for amount, target_currency in test_cases:
         converted = amount.to(target_currency)
         assert isinstance(converted, target_currency)
-        assert (
-            converted.amount > 0
-        ), f"Converting 1 {amount.__class__.__name__} to {target_currency.__name__} resulted in 0 or negative amount"
+        assert converted.amount > 0, (
+            f"Converting 1 {amount.__class__.__name__} to {target_currency.__name__} "
+            "resulted in 0 or negative amount"
+        )
         print(f"1 {amount.__class__.__name__} = {converted}")
 
 
@@ -181,8 +183,9 @@ def test_currency_conversion_all():
 
         # Verify the conversion produced a valid result
         assert isinstance(converted, to_currency)
-        assert (
-            converted.amount > 0
-        ), f"Converting 1 {from_currency.__name__} to {to_currency.__name__} resulted in 0 or negative amount"
+        assert converted.amount > 0, (
+            f"Converting 1 {from_currency.__name__} to {to_currency.__name__} "
+            "resulted in 0 or negative amount"
+        )
 
         print(f"1 {from_currency.__name__} = {converted}")

@@ -1,4 +1,5 @@
 from decimal import Decimal
+
 import requests
 
 
@@ -25,4 +26,4 @@ class ExchangeRateAPI:
             cls._rates_cache[cache_key] = rate
             return rate
         except Exception as e:
-            raise ValueError(f"Failed to get exchange rate: {str(e)}")
+            raise ValueError(f"Failed to get exchange rate: {str(e)}") from e
