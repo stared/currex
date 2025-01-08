@@ -14,7 +14,7 @@ I often use Python as a command-line calculator. Yet, I need to go back to Googl
 
 It is intended to be used in interactive Python sessions (such as Jupyter Notebook, IPython, etc.) to get ballpark estimates of prices - e.g. when traveling, buying online, etc. Personally, I use it from the command line IPython.
 
-It is a new package, so I'm open to suggestions.
+It is a new package, so [I'm open to suggestions](https://github.com/stared/currex/issues).
 
 It is **NOT intended to be used in production code**. Every API design decision I made was to make it as simple as possible to use in interactive sessions. Some of them are consciously at odds with a tool that could be used in a library.
 
@@ -67,6 +67,16 @@ USD(123.456789)  # USD(123.456789)
 
 - Python 3.9 or higher
 - Internet connection for real-time exchange rates - it uses [HexaRate](https://hexarate.paikama.co/)
+
+## Development
+
+To set up the development environment:
+
+```bash
+git clone git@github.com:stared/currex.git
+cd currex
+pip install -e .[dev]
+```
 
 ## TODO
 
