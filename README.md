@@ -9,13 +9,15 @@
 
 A Pythonic currency calculator that makes working with currencies and exchange rates simple and smooth.
 
-I often use Python as a command-line calculator. Yet, I need to go back to Google Search to convert between curriencies. So, for my own convenience, I created this library.
+I often use Python as a command-line calculator. Yet, I need to go back to Google Search to convert between curriencies. So, for my own convenience, I created this library that makes it easy to add, multiply and change excurrencies. One of the core feature is autocasting - when using a few currencies, automatically convert them to the first one.
 
-It is inteded to be used interactive python sessions (such as Jupyter Notebook, IPython, etc.) to get ballpark estimates of prices - e.g. when travelling, buying online, etc.
+It is inteded to be used interactive python sessions (such as Jupyter Notebook, IPython, etc.) to get ballpark estimates of prices - e.g. when travelling, buying online, etc. Personally, I use it form command line ipython.
 
-It is NOT intended to be used in production code. Every API design decision I made was to make it as simple as possible to use it in interactive sessions.
+It is a new package, so I'm open to suggestions.
 
-**EVEN MORE IMPORTANT**: Never use it for any important decisions - taxes, investments, etc. There is not quarantee that the exchange rates are correct.
+It is **NOT intended to be used in production code**. Every API design decision I made was to make it as simple as possible to use it in interactive sessions. Some of them are consciously at odds with a tool that could be used used in a library.
+
+**EVEN MORE IMPORTANT**: Never use it for any important decisions - taxes, investments, etc. There is not quarantee that the exchange rates are up-to-date and correct. Take a note that even major players make mistakes, e.g. [Google Glitch Undervalues Poland's Zloty By A Fifth](https://www.barrons.com/news/google-glitch-undervalues-poland-s-zloty-by-a-fifth-b4d695e7). Always use the official exchange rates.
 
 ## Installation
 
@@ -55,14 +57,14 @@ USD(2) / JPY(14)  # 22.531428526365715
 
 ## Requirements
 
-- Python 3.10 or higher
+- Python 3.9 or higher
 - Internet connection for real-time exchange rates - it uses [HexaRate](https://hexarate.paikama.co/)
 
 ## TODO
 
-- Installation with PyPI
 - Mock API for testing
 - More backends for exchange rates
+- Support for more cryptocurrencies
 
 ## License
 
