@@ -1,5 +1,5 @@
 import pytest
-from currex import USD, EUR, GBP, PLN
+from currex import USD, EUR, GBP, PLN, currex_config
 from decimal import Decimal
 
 
@@ -67,3 +67,33 @@ def test_negative_amounts():
 def test_zero_amount():
     amount = 0 * USD
     assert amount.amount == Decimal("0")
+
+
+def test_decimal_digits_configuration():
+    """Test the decimal digits configuration for currency representation."""
+    amount = USD(123.456789)
+
+    # Default (2 digits)
+    assert str(amount) == "123.46 USD"
+    assert repr(amount) == "USD(123.46)"
+
+    # Change to 3 digits
+    currex_config.set_decimal_digits(3)
+    assert str(amount) == "123.457 USD"
+    assert repr(amount) == "USD(123.457)"
+
+    # Change to no rounding (None)
+    currex_config.set_decimal_digits(None)
+    assert str(amount) == "123.456789 USD"
+    assert repr(amount) == "USD(123.456789)"
+
+    # Reset to default
+    currex_config.set_decimal_digits(2)
+    assert str(amount) == "123.46 USD"
+    assert repr(amount) == "USD(123.46)"
+
+
+def test_invalid_decimal_digits():
+    """Test that negative decimal digits raise ValueError."""
+    with pytest.raises(ValueError):
+        currex_config.set_decimal_digits(-1)

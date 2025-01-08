@@ -3,6 +3,7 @@ Currex - A Python library for currency conversion and arithmetic
 """
 
 from .currency import Currency
+from .config import currex_config
 from .factory import (
     USD,
     EUR,
@@ -78,6 +79,7 @@ __version__ = "0.1.1"
 __all__ = [
     "Currency",
     "ExchangeRateAPI",
+    "currex_config",
     "USD",
     "EUR",
     "GBP",

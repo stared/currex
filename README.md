@@ -31,22 +31,28 @@ pip install currex
 from currex import *
 
 # use currencies as if they were numbers
-100 * USD  # USD(100)
-12 * USD(100)  # USD(1200)
+100 * USD  # USD(100.00)
+12 * USD(100)  # USD(1200.00)
 
 # convert currencies to other currencies
-USD(100).to(EUR)  # EUR(85.3)
-USD(100).to(PLN)  # PLN(430.5)
+USD(100).to(EUR)  # EUR(85.30)
+USD(100).to(PLN)  # PLN(430.50)
 
 # this syntax is also supported
-PLN(EUR(12))  # PLN(51.3312)
+PLN(EUR(12))  # PLN(51.33)
 
 # add different currencies
-USD(100) + EUR(100)  # USD(203.50500)
-EUR(100) - USD(100)  # EUR(2.60500)
+USD(100) + EUR(100)  # USD(203.42)
+EUR(100) - USD(100)  # EUR(3.22)
 
 # divide currencies
 USD(2) / JPY(14)  # 22.531428526365715
+
+# configure decimal digits (default is 2)
+currex_config.set_decimal_digits(3)  # show 3 decimal places
+USD(123.456789)  # USD(123.457)
+currex_config.set_decimal_digits(None)  # show full precision
+USD(123.456789)  # USD(123.456789)
 ```
 
 ## Features
@@ -54,6 +60,7 @@ USD(2) / JPY(14)  # 22.531428526365715
 - Arithmetic operations with currencies
 - Currency conversion
 - Autocasting - when using a few currencies, automatically convert them to the first one
+- Configurable decimal places for currency representation
 
 ## Requirements
 

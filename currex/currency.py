@@ -1,6 +1,7 @@
 from decimal import Decimal
 from typing import Union, Type, TypeVar
 from .exchange import ExchangeRateAPI
+from .config import currex_config
 
 DecimalLike = Union[int, float, Decimal]
 C = TypeVar("C", bound="Currency")
@@ -109,10 +110,16 @@ class Currency(metaclass=CurrencyMeta):
         return self.amount >= other.amount
 
     def __str__(self) -> str:
-        return f"{self.amount:.2f} {self.__class__.__name__}"
+        digits = currex_config.get_decimal_digits()
+        if digits is None:
+            return f"{self.amount} {self.__class__.__name__}"
+        return f"{self.amount:.{digits}f} {self.__class__.__name__}"
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.amount})"
+        digits = currex_config.get_decimal_digits()
+        if digits is None:
+            return f"{self.__class__.__name__}({self.amount})"
+        return f"{self.__class__.__name__}({self.amount:.{digits}f})"
 
     def to(self, currency_class: Type[C]) -> C:
         """Convert to another currency"""
