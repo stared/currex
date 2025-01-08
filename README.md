@@ -7,17 +7,17 @@
 [![GitHub Actions](https://img.shields.io/github/actions/workflow/status/stared/currex/test.yml?branch=main)](https://github.com/stared/currex/actions)
 [![Twitter @pmigdal](https://img.shields.io/twitter/follow/pmigdal)](https://twitter.com/pmigdal)
 
-A Pythonic currency calculator that makes working with currencies and exchange rates simple and smooth.
+A Pythonic currency calculator that makes working with currencies and exchange rates simple and smooth - by [Piotr Migdał](https://p.migdal.pl/).
 
-I often use Python as a command-line calculator. Yet, I need to go back to Google Search to convert between curriencies. So, for my own convenience, I created this library that makes it easy to add, multiply and change excurrencies. One of the core feature is autocasting - when using a few currencies, automatically convert them to the first one.
+I often use Python as a command-line calculator. Yet, I need to go back to Google Search to convert between currencies. So, for my own convenience, I created this library that makes it easy to add, multiply and change currencies. One of the core features is autocasting - when using a few currencies, automatically convert them to the first one.
 
-It is inteded to be used interactive python sessions (such as Jupyter Notebook, IPython, etc.) to get ballpark estimates of prices - e.g. when travelling, buying online, etc. Personally, I use it form command line ipython.
+It is intended to be used in interactive Python sessions (such as Jupyter Notebook, IPython, etc.) to get ballpark estimates of prices - e.g. when traveling, buying online, etc. Personally, I use it from the command line IPython.
 
 It is a new package, so I'm open to suggestions.
 
-It is **NOT intended to be used in production code**. Every API design decision I made was to make it as simple as possible to use it in interactive sessions. Some of them are consciously at odds with a tool that could be used used in a library.
+It is **NOT intended to be used in production code**. Every API design decision I made was to make it as simple as possible to use in interactive sessions. Some of them are consciously at odds with a tool that could be used in a library.
 
-**EVEN MORE IMPORTANT**: Never use it for any important decisions - taxes, investments, etc. There is not quarantee that the exchange rates are up-to-date and correct. Take a note that even major players make mistakes, e.g. [Google Glitch Undervalues Poland's Zloty By A Fifth](https://www.barrons.com/news/google-glitch-undervalues-poland-s-zloty-by-a-fifth-b4d695e7). Always use the official exchange rates.
+**EVEN MORE IMPORTANT**: Never use it for any important decisions - taxes, investments, etc. There is no guarantee that the exchange rates are up-to-date and correct. Note that even major players make mistakes, e.g. [Google Glitch Undervalues Poland's Zloty By A Fifth](https://www.barrons.com/news/google-glitch-undervalues-poland-s-zloty-by-a-fifth-b4d695e7). Always use the official exchange rates.
 
 ## Installation
 
