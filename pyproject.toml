@@ -50,6 +50,7 @@ dev = [
     "black>=24.10.0",
     "ruff>=0.8.0",
     "types-requests>=2.31.0",
+    "pytest>=8.3.0",
 ]
 
 [tool.black]
@@ -59,7 +60,7 @@ include = '\.pyi?$'
 
 [tool.ruff]
 line-length = 88
-target-version = "py39"
+target-version = "py310"
 
 [tool.ruff.lint]
 select = [
