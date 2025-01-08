@@ -49,6 +49,7 @@ dev = [
     "mypy>=1.14.0",
     "black>=24.10.0",
     "ruff>=0.8.0",
+    "types-requests>=2.31.0",
 ]
 
 [tool.black]
