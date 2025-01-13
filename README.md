@@ -8,7 +8,7 @@
 [![GitHub Actions: Linting](https://img.shields.io/github/actions/workflow/status/stared/currex/lint.yml?branch=main&label=linting)](https://github.com/stared/currex/actions)
 [![Twitter @pmigdal](https://img.shields.io/twitter/follow/pmigdal)](https://twitter.com/pmigdal)
 
-A Pythonic currency calculator that makes working with currencies and exchange rates simple and smooth - by [Piotr Migdał](https://p.migdal.pl/).
+A Pythonic currency calculator that makes working with currencies and exchange rates simple and smooth - by [Piotr Migdał](https://p.migdal.pl/). [See it in action in Colab](https://colab.research.google.com/github/stared/currex/blob/main/currex.ipynb) - no need to install anything.
 
 I often use Python as a command-line calculator. Yet, I need to go back to Google Search to convert between currencies. So, for my own convenience, I created this library that makes it easy to add, multiply and change currencies. One of the core features is autocasting - when using a few currencies, automatically convert them to the first one.
 
