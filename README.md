@@ -10,9 +10,9 @@
 
 A Pythonic currency calculator that makes working with currencies and exchange rates simple and smooth - by [Piotr Migdał](https://p.migdal.pl/). [See it in action in Colab](https://colab.research.google.com/github/stared/currex/blob/main/currex.ipynb) - no need to install anything.
 
-I often use Python as a command-line calculator. Yet, I need to go back to Google Search to convert between currencies. So, for my own convenience, I created this library that makes it easy to add, multiply and change currencies. One of the core features is autocasting - when using a few currencies, automatically convert them to the first one.
+I often use Python as a command-line calculator. However, I frequently found myself going back to Google Search to convert between currencies. So, I created this library to make it easy to add, multiply, and convert between currencies. One of its core features is autocasting - when working with multiple currencies, it automatically converts them to match the first currency used.
 
-It is intended to be used in interactive Python sessions (such as Jupyter Notebook, IPython, etc.) to get ballpark estimates of prices - e.g. when traveling, buying online, etc. Personally, I use it from the command line IPython.
+This library is designed for use in interactive Python sessions (such as Jupyter Notebook, Jupyter Lab, or IPython) to quickly get ballpark price estimates - perfect for travel planning or online shopping. I personally use it through IPython on the command line.
 
 It is a new package, so [I'm open to suggestions](https://github.com/stared/currex/issues).
 
