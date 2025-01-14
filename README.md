@@ -14,6 +14,8 @@ I often use Python as a command-line calculator. However, I frequently found mys
 
 This library is designed for use in interactive Python sessions (such as Jupyter Notebook, Jupyter Lab, or IPython) to quickly get ballpark price estimates - perfect for travel planning or online shopping. I personally use it through IPython on the command line.
 
+Right now it uses [HexaRate](https://hexarate.paikama.co/) for exchange rates.
+
 It is a new package, so [I'm open to suggestions](https://github.com/stared/currex/issues).
 
 It is **NOT intended to be used in production code**. Every API design decision I made was to make it as simple as possible to use in interactive sessions. Some of them are consciously at odds with a tool that could be used in a library.
@@ -66,7 +68,7 @@ USD(123.456789)  # USD(123.456789)
 ## Requirements
 
 - Python 3.9 or higher
-- Internet connection for real-time exchange rates - it uses [HexaRate](https://hexarate.paikama.co/)
+- Internet connection for real-time exchange rates
 
 ## Development
 
@@ -81,7 +83,7 @@ pip install -e .[dev]
 ## TODO
 
 - Mock API for testing
-- More backends for exchange rates
+- More backends for exchange rates, see [e.g. this list](https://publicapis.dev/category/currency-exchange)
 - Support for more cryptocurrencies
 
 ## License
