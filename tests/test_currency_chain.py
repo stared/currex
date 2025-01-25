@@ -6,186 +6,45 @@ by converting 1 unit of currency at index 2n to currency at index 2n+1.
 
 import pytest
 
-from currex import (
-    AED,
-    AFN,
-    AOA,
-    ARS,
-    AUD,
-    BAM,
-    BGN,
-    BRL,
-    BYN,
-    CAD,
-    CDF,
-    CHF,
-    CLP,
-    COP,
-    CUP,
-    CZK,
-    DKK,
-    EUR,
-    GBP,
-    GEL,
-    GHS,
-    GNF,
-    HKD,
-    HUF,
-    IDR,
-    ILS,
-    INR,
-    ISK,
-    JPY,
-    KRW,
-    KZT,
-    MDL,
-    MGA,
-    MRU,
-    MXN,
-    MZN,
-    NIO,
-    NOK,
-    NZD,
-    PEN,
-    PHP,
-    PKR,
-    PLN,
-    RON,
-    RSD,
-    RUB,
-    SDG,
-    SEK,
-    SGD,
-    SRD,
-    STN,
-    THB,
-    TJS,
-    TMT,
-    TRY,
-    TWD,
-    UAH,
-    UGX,
-    USD,
-    UYU,
-    UZS,
-    VES,
-    XAF,
-    XOF,
-    ZAR,
-    ZMW,
-)
+from currex import CURRENCIES, Currency
 
 
 @pytest.mark.api
 def test_specific_currency_pairs():
     """Test some specific currency pairs that are commonly used."""
     test_cases = [
-        (USD(1), EUR),  # USD to EUR
-        (EUR(1), GBP),  # EUR to GBP
-        (GBP(1), JPY),  # GBP to JPY
-        (CHF(1), CAD),  # CHF to CAD
-        (AUD(1), SGD),  # AUD to SGD
+        (Currency("USD", 1), "EUR"),  # USD to EUR
+        (Currency("EUR", 1), "GBP"),  # EUR to GBP
+        (Currency("GBP", 1), "JPY"),  # GBP to JPY
+        (Currency("CHF", 1), "CAD"),  # CHF to CAD
+        (Currency("AUD", 1), "SGD"),  # AUD to SGD
     ]
 
     for amount, target_currency in test_cases:
         converted = amount.to(target_currency)
-        assert isinstance(converted, target_currency)
+        assert converted.code == target_currency
         assert converted.amount > 0, (
-            f"Converting 1 {amount.__class__.__name__} to {target_currency.__name__} "
-            "resulted in 0 or negative amount"
+            f"Converting 1 {amount.code} to {target_currency} " "resulted in 0 or negative amount"
         )
-        print(f"1 {amount.__class__.__name__} = {converted}")
 
 
 @pytest.mark.api
 def test_currency_conversion_all():
     """Test converting 1 unit between pairs of currencies."""
-    # Create a list of all currency classes
-    currencies = [
-        USD,
-        EUR,
-        GBP,
-        JPY,
-        CHF,
-        AUD,
-        CAD,
-        HKD,
-        NZD,
-        SEK,
-        KRW,
-        SGD,
-        NOK,
-        MXN,
-        INR,
-        RUB,
-        ZAR,
-        TRY,
-        BRL,
-        TWD,
-        DKK,
-        PLN,
-        THB,
-        IDR,
-        CZK,
-        AED,
-        AFN,
-        AOA,
-        ARS,
-        BAM,
-        BGN,
-        BYN,
-        CDF,
-        CLP,
-        COP,
-        CUP,
-        GEL,
-        GHS,
-        GNF,
-        HUF,
-        ILS,
-        ISK,
-        KZT,
-        MDL,
-        MGA,
-        MRU,
-        MZN,
-        NIO,
-        PEN,
-        PHP,
-        PKR,
-        RON,
-        RSD,
-        SDG,
-        SRD,
-        STN,
-        TJS,
-        TMT,
-        UAH,
-        UGX,
-        UYU,
-        UZS,
-        VES,
-        XAF,
-        XOF,
-        ZMW,
-    ]
-
     # Convert 1 unit from currency at index 2n to currency at index 2n+1
-    for i in range(0, len(currencies) - 1, 2):
-        from_currency = currencies[i]
-        to_currency = currencies[i + 1]
+    for i in range(0, len(CURRENCIES) - 1, 2):
+        from_currency_code = CURRENCIES[i]
+        to_currency_code = CURRENCIES[i + 1]
 
         # Create amount of 1 in the source currency
-        amount = from_currency(1)
+        amount = Currency(from_currency_code, 1)
 
         # Convert to target currency
-        converted = amount.to(to_currency)
+        converted = amount.to(to_currency_code)
 
         # Verify the conversion produced a valid result
-        assert isinstance(converted, to_currency)
+        assert converted.code == to_currency_code
         assert converted.amount > 0, (
-            f"Converting 1 {from_currency.__name__} to {to_currency.__name__} "
+            f"Converting 1 {from_currency_code} to {to_currency_code} "
             "resulted in 0 or negative amount"
         )
-
-        print(f"1 {from_currency.__name__} = {converted}")

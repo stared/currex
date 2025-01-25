@@ -13,7 +13,7 @@ from decimal import Decimal
 
 import pytest
 
-from currex import EUR, GBP, PLN, USD
+from currex import EUR, GBP, PLN, USD  # type: ignore[attr-defined]
 
 
 @pytest.mark.api
@@ -21,7 +21,7 @@ def test_usd_to_eur_conversion():
     """Test USD to EUR conversion"""
     usd_amount = 100 * USD
     eur_amount = EUR(usd_amount)
-    assert isinstance(eur_amount, EUR)
+    assert eur_amount.code == EUR.code
     assert eur_amount.amount > 0
 
 
@@ -30,7 +30,7 @@ def test_eur_to_pln_conversion():
     """Test EUR to PLN conversion"""
     eur_amount = 50 * EUR
     pln_amount = PLN(eur_amount)
-    assert isinstance(pln_amount, PLN)
+    assert pln_amount.code == PLN.code
     assert pln_amount.amount > 0
 
 
@@ -52,7 +52,7 @@ def test_multi_currency_chain():
     start_amount = 100 * USD
     # USD -> EUR -> GBP -> PLN
     result = PLN(GBP(EUR(start_amount)))
-    assert isinstance(result, PLN)
+    assert result.code == PLN.code
     assert result.amount > 0
 
 

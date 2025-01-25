@@ -2,22 +2,22 @@ from decimal import Decimal
 
 import pytest
 
-from currex import USD, currex_config
+from currex import USD, currex_config  # type: ignore[attr-defined]
 
 
 def test_basic_multiplication():
     amount = 100 * USD
-    assert isinstance(amount, USD)
+    assert amount.code == USD.code
     assert amount.amount == Decimal("100")
 
     amount = USD * 100
-    assert isinstance(amount, USD)
+    assert amount.code == USD.code
     assert amount.amount == Decimal("100")
 
 
 def test_basic_division():
     amount = USD(100) / 2
-    assert isinstance(amount, USD)
+    assert amount.code == USD.code
     assert amount.amount == Decimal("50")
 
 
@@ -25,7 +25,7 @@ def test_addition():
     amount1 = 100 * USD
     amount2 = 50 * USD
     total = amount1 + amount2
-    assert isinstance(total, USD)
+    assert total.code == USD.code
     assert total.amount == Decimal("150")
 
 
@@ -33,7 +33,7 @@ def test_subtraction():
     amount1 = 100 * USD
     amount2 = 30 * USD
     diff = amount1 - amount2
-    assert isinstance(diff, USD)
+    assert diff.code == USD.code
     assert diff.amount == Decimal("70")
 
 
