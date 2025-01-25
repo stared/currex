@@ -18,7 +18,9 @@ Right now it uses [HexaRate](https://hexarate.paikama.co/) for exchange rates.
 
 It is a new package, so [I'm open to suggestions](https://github.com/stared/currex/issues).
 
-It is **NOT intended to be used in production code**. Every API design decision I made was to make it as simple as possible to use in interactive sessions. Some of them are consciously at odds with a tool that could be used in a library.
+## Disclaimer
+
+It is **NOT intended to be used in production code**. Every API design decision was made to optimize for interactive sessions. Some decisions consciously go against best practices for production libraries. For example, the main namespace defines all currencies as constants, and the example code uses `from currex import *` - practices I believe are appropriate for interactive sessions only.
 
 **EVEN MORE IMPORTANT**: Never use it for any important decisions - taxes, investments, etc. There is no guarantee that the exchange rates are up-to-date and correct. Note that even major players make mistakes, e.g. [Google Glitch Undervalues Poland's Zloty By A Fifth](https://www.barrons.com/news/google-glitch-undervalues-poland-s-zloty-by-a-fifth-b4d695e7). Always use the official exchange rates.
 
@@ -58,6 +60,17 @@ currex_config.set_decimal_digits(None)  # show full precision
 USD(123.456789)  # USD(123.456789)
 ```
 
+For a slightly more advanced use, there is a general `Currency` class:
+
+```python
+from currex import Currency
+
+USD = Currency("USD")  # one dollar
+
+money = Currency("USD", 100)  # USD(100.00)
+money.to("EUR")  # EUR(95.30)
+```
+
 ## Features
 
 - Arithmetic operations with currencies
@@ -84,7 +97,7 @@ pip install -e .[dev]
 
 - Mock API for testing
 - More backends for exchange rates, see [e.g. this list](https://publicapis.dev/category/currency-exchange)
-- Support for more cryptocurrencies
+- Support for cryptocurrencies
 
 ## License
 
