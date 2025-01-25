@@ -8,5 +8,5 @@ from .exchange import ExchangeRateAPI
 from .factory import *  # noqa: F403
 from .factory import CURRENCIES
 
-__version__ = "0.1.2"
+__version__ = "0.2.0"
 __all__ = ["Currency", "ExchangeRateAPI", "currex_config"] + CURRENCIES

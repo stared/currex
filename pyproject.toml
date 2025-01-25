@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "currex"
-version = "0.1.2"
+version = "0.2.0"
 description = "A Pythonic currency calculator with real-time exchange rates"
 readme = "README.md"
 requires-python = ">=3.9"

@@ -32,8 +32,8 @@ A clear and concise description of what you expected to happen.
 ### Environment
 
 - OS: [e.g. macOS, Linux, Windows]
-- Python version: [e.g. 3.9, 3.10]
-- currex version: [e.g. 0.1.2]
+- Python version: [e.g. 3.11]
+- currex version: [e.g. 0.2.0]
 
 ### Additional context
 
