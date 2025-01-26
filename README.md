@@ -6,6 +6,7 @@
 ![Python version - PyPI](https://img.shields.io/pypi/pyversions/currex.svg)
 [![GitHub Actions: Build](https://img.shields.io/github/actions/workflow/status/stared/currex/test.yml?branch=main)](https://github.com/stared/currex/actions)
 [![GitHub Actions: Linting](https://img.shields.io/github/actions/workflow/status/stared/currex/lint.yml?branch=main&label=linting)](https://github.com/stared/currex/actions)
+[![Downloads](https://pepy.tech/badge/currex)](https://pepy.tech/project/currex)
 [![Twitter @pmigdal](https://img.shields.io/twitter/follow/pmigdal)](https://twitter.com/pmigdal)
 
 A Pythonic currency calculator that makes working with currencies and exchange rates simple and smooth - by [Piotr Migdał](https://p.migdal.pl/). [See it in action in Colab](https://colab.research.google.com/github/stared/currex/blob/main/currex.ipynb) - no need to install anything.
